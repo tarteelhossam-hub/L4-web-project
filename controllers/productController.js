@@ -3,7 +3,6 @@ const Category = require('../models/Category');
 const asyncHandler = require('../utils/asyncHandler');
 const AppError = require('../utils/AppError');
 
-
 exports.createProduct = asyncHandler(async (req, res, next) => {
     const categoryExists = await Category.findById(req.body.category);
     if (!categoryExists) {
@@ -16,18 +15,21 @@ exports.createProduct = asyncHandler(async (req, res, next) => {
     });
 });
 
-
 exports.getAllProducts = asyncHandler(async (req, res, next) => {
     const queryObj = { ...req.query };
-    let query = Product.find(queryObj).populate('category', 'name description');
+    
+    let queryStr = JSON.stringify(queryObj);
+    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, match => `$${match}`);
+
+    let query = Product.find(JSON.parse(queryStr)).populate('category', 'name description');
     const products = await query;
+
     res.status(200).json({
         status: 'success',
         results: products.length,
         data: { products }
     });
 });
-
 
 exports.getProduct = asyncHandler(async (req, res, next) => {
     const product = await Product.findById(req.params.id).populate('category', 'name');
@@ -40,7 +42,6 @@ exports.getProduct = asyncHandler(async (req, res, next) => {
     });
 });
 
-
 exports.updateProduct = asyncHandler(async (req, res, next) => {
     if (req.body.category) {
         const categoryExists = await Category.findById(req.body.category);
@@ -49,7 +50,7 @@ exports.updateProduct = asyncHandler(async (req, res, next) => {
         }
     }
     const updatedProduct = await Product.findByIdAndUpdate(req.params.id, req.body, {
-        new: true,
+        web: true,
         runValidators: true
     });
     if (!updatedProduct) {
@@ -60,7 +61,6 @@ exports.updateProduct = asyncHandler(async (req, res, next) => {
         data: { product: updatedProduct }
     });
 });
-
 
 exports.deleteProduct = asyncHandler(async (req, res, next) => {
     const product = await Product.findByIdAndDelete(req.params.id);

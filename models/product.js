@@ -19,6 +19,11 @@ const productSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Category', 
         required: [true, 'Product must belong to a category']
+    },
+    stock: {
+        type: Number,
+        default: 0,
+        min: [0, 'Stock cannot be negative']
     }
 }, {
     timestamps: true
