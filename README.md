@@ -1,5 +1,11 @@
 # Welcome to the E-Commerce REST API ! 
 
+## information about the author 
+Name : Tarteel Hossam Elsayed Mohamed
+Email : tarteelhossam@gmail.com
+Github link : https://github.com/tarteelhossam-hub/L4-web-project.git
+
+
 This project is a complete, educational backend built with **Node.js**, **Express.js**, and **MongoDB (Mongoose)** using the **MVC (Model-View-Controller)** design pattern. 
 
 This guide is designed for programming students. We will explain every folder, every command, and every key line of code so you can learn how modern web servers work!
