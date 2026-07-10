@@ -35,7 +35,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"clothing\"\r\n}",
+              "raw": "{\r\n    \"name\": \"Books\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
