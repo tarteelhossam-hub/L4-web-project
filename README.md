@@ -1,97 +1,190 @@
- # level 4 web devolpment 1st term project
- Name: Tarteel Hossam elsaied Mohamed Ahmed
-Course: Digital Egypt Cubs  
-Architecture: Model-View-Controller (MVC)  
-Tech Stack: Node.js, Express.js, MongoDB, Mongoose
+# Welcome to the E-Commerce REST API ! 
 
--------------------------------------------------------------------------------------------------------------------------------------------------
+This project is a complete, educational backend built with **Node.js**, **Express.js**, and **MongoDB (Mongoose)** using the **MVC (Model-View-Controller)** design pattern. 
 
-## Project Description & Features
-This project is a comprehensive Backend RESTful API designed for e-commerce platforms to manage categories and products seamlessly. Built on Node.js and Express.js, the application enforces a strict Model-View-Controller (MVC) design pattern to ensure high scalability, modularity, and ease of maintenance. MongoDB is utilized as the primary database, paired with Mongoose for structured schema definitions and data validation.
+This guide is designed for programming students. We will explain every folder, every command, and every key line of code so you can learn how modern web servers work!
 
-###  Key Features:
-* **Robust Category Management:** Full CRUD capability to organize products into logical parent and sub-categories.
-* **Advanced Product Management:** Full CRUD operations supporting relational references to categories, automated stock tracking, and price validations.
-* **Database Seeding System:** Automated scripts to instantly populate the database with realistic development data for rapid testing.
-* **Global Error Handling Middleware:** A centralized middleware mechanism ensuring consistent, secure, and clear JSON error responses across all API endpoints.
----------------------------------------------------------------------------------------------------------------------------------------------------
-#### Prerequisites & Installation
+---
 
-### Prerequisites:
-Before deploying the application, ensure the following software suites are installed locally on your development workstation:
-* **Node.js** (Version 16.x or higher)
-* **npm** (Node Package Manager)
-* **MongoDB** (Local instance running on port 27017 or a valid MongoDB Atlas URI)
+## 🏗️ What is MVC? (Model-View-Controller)
 
-###  Step-by-Step Installation Guide:
+MVC is a smart way to organize our project folders so that each part of our code has only one job. Think of it like a restaurant:
 
-1. **Clone the Project Repository:**
-   ```bash
-   git clone <REPOSITORY_URL>
-   cd <PROJECT_FOLDER_NAME>
+```
+  [CLIENT / USER]  <--->  [ROUTES / CONTROLLER]  <--->  [MODELS]  <--->  [DATABASE]
+```
 
-# Install Project Dependencies
-**npm install**
+- Model : Defines how our data looks. It knows the schemas and how to talk to the database.
 
-## Configure Environment Variables:
-Create a new file named .env in the absolute root directory of the project and populate it according to the Environment Variables Table below.Seed the Database (Optional but Recommended):
-**npm run seed**
+- View : The final data sent back to the customer. In a REST API, we send back JSON data (text-based data).
 
-### Launch the Application Server:
-Development Mode (With Hot-Reloading via Nodemon):
-**npm run dev**
+Controller : Takes the customer's request ("I want to buy a laptop"), talks to the Model to get the database records, performs calculations (like checking if there is enough stock or calculating total price), and brings the result back to the customer.
 
-Production Mode:
-**npm start**
---------------------------------------------------------------------------------------------------------------------------------------------------
-##### Environment Variables Configuration
-Create a .env file in the project root and add the following parameters:
+---
+## 📂 Project Folder Structure
+
+```text
+📁 PROJECT (Root Directory)
+│
+├── 📁 config/ ──────────  Database Connection
+│   └── 📄 db.js ─────────── MongoDB configuration & backup
+│
+├── 📁 models/ ──────────  Data Schemas 
+│   ├── 📄 category.js ───── Category structure
+│   ├── 📄 product.js ────── Product structure & references
+│   ├── 📄 cart.js ───────── Shopping cart items
+│   └── 📄 order.js ──────── Checkout & shipping details
+│
+├── 📁 controllers/ ─────  Business Logic
+│   ├── 📄 categoryController.js ─ Fetching & creating categories
+│   ├── 📄 productController.js ── Product operations & populate()
+│   ├── 📄 cartController.js ───── Stock checks & dynamic pricing
+│   └── 📄 orderController.js ──── Checking stock & clearing cart
+│
+├── 📁 routes/ ──────────  URL Endpoints & Routing
+│   ├── 📄 categoryRoutes.js ── Maps /api/categories
+│   ├── 📄 productRoutes.js ─── Maps /api/products
+│   ├── 📄 cartRoutes.js ────── Maps /api/cart
+│   └── 📄 orderRoutes.js ───── Maps /api/orders
+│
+├── 📁 middleware/ ──────  Request Filters
+│   └── 📄 errorHandler.js ──── Centralized global error handler
+│
+├── 📁 utils/ ───────────  Shared Helpers
+│   ├── 📄 AppError.js ──────── Custom HTTP operational errors
+│   └── 📄 asyncHandler.js ──── Eliminates repetitive try/catch
+│
+└── 📁 scripts/ ─────────  Database Utilities
+    └── 📄 seeds.js ────────── Populates fresh mock database data
+```
+## ⚙️ Prerequisites & Setup Guide
+1. Requirements
+- Node.js: Install Node.js (version 18 or 20) from nodejs.org.
+
+- Postman: A free tool to test our API endpoints from postman.com.
+
+- MongoDB: (Optional) MongoDB Server. Our project is built with an automatic in-memory fallback. If it detects your local MongoDB is offline, it will automatically spin up a temporary database in the background!
+
+2. Step-by-Step Installation Commands
+Open your terminal inside the project folder and write these commands:
+
+**Command A: Install Dependencies**
+```bash
+npm install
+```
+
+**What this does:** Reads our package.json file and downloads all required libraries (express, mongoose, dotenv, etc.) into node_modules.
+
+**Command B:** Seed Initial Data
+```bash
+npm run seed
+```
+**What this does:** Wipes the database clean and populates it with starter categories and products.
+
+**Command C:** Start the Server
+
+```bash
+npm run dev
+```
+
+**What this does:** Launches the server using nodemon so it restarts automatically whenever you edit and save your code!
+
+---
+## 📝 Environment Variables (.env)
+Create a file named .env in the root folder of the project. Copy and paste the following values:
+
+| Variable | Description | Example Value | 
+| :--- | :--- | :--- | 
+| PORT | The port number our server will listen on. | 5000 | 
+| MONGO_URI | The connection string for your MongoDB database. | mongodb://127.0.0.1:27017/ecommerce_db | 
+| NODE_ENV | The environment the server is running in. | development |
+
+---
+## 🎯 API Endpoint Documentation (Postman Collection Guide)
+Once your server is running on http://localhost:5000, you can test our exactly 4 main folders and 7 endpoints included in the attached Postman collection:
+
+1. Categories API (📁 categories)
+GET get all categories 🟢 (Status: 200 OK)
+- What it does: Fetches all categories currently in the database.
+
+POST create category 🟡 (Status: 201 Created)
+
+- What it does: Creates a new category.
+
+- Body (JSON): 
+```
+{"name": "Electronics", "description": "Gadgets and devices"}
+```
+2. Products API (📁 products)
+POST create product 🟡 (Status: 201 Created)
+
+- What it does: Validates that the category exists first, then creates a new product linked to that category.
+
+- Body (JSON):
+```
+ {"name": "Gaming Laptop", "price": 1200, "category": "CATEGORY_ID", "stock": 10, "description": "High performance laptop"}
+```
+GET all product 🟢 (Status: 200 OK)
+
+- What it does: Retrieves all products from the database and uses Mongoose populate('category') to replace the category ID with full category details!
+
+3. Cart API (📁 cart)
+POST add to cart 🟡 (Status: 200 OK / 201 Created)
+
+- What it does: Adds an item to the shopping cart. It automatically checks stock availability, adds the product, and dynamically calculates/updates the totalPrice of the cart.
+
+- Body (JSON):
+```
+ {"productId": "PRODUCT_ID", "quantity": 2}
+```
+GET get cart 🟢 (Status: 200 OK)
+
+- What it does: Views your current shopping cart items, details, and the overall total price.
+
+4. Orders API (📁 orders)
+POST create order 🟡 (Status: 201 Created)
+
+**⚠️ Important Note for Testing: The backend expects a request body with shipping info. If you send an empty request, you will get a 400 or 500 error. Always include the body below.**
+
+**What it does:**The final checkout step! It checks if there is sufficient stock for all items currently in the cart, subtracts the purchased quantity from the product stock in the database, completely clears (empties) the cart, and creates a permanent order history snapshot.
+
+- Body (JSON):
+
+```bash
+{
+  "shippingAddress": "Hadayek Helwan, Cairo, Egypt"
+}
+```
+---
+## 🔎 Key Backend Logic Explanations
+1. Mongoose populate() Mechanism (controllers/productController.js)
+When fetching products, MongoDB only returns the category ID. To get the actual category details, we use .populate():
+
+``` bash
+const products = await Product.find().populate('category');ّّ
+```
 
 
-Variable Name    Data Type    Description    Example Value
---------------   ----------   ------------   --------------
-port               Number    The network
-                             port on which        5000
-                             theExpress local
-                             server listens. 
-------------------------------------------------------------
-MONGO_URI        string(url) The official 
-                             connection string   mongodb://localhost:
-                             configuration for   27017/ecommerce_db
-                             MongoDB.
+**Why this is cool:** Mongoose automatically runs a secondary query behind the scenes to find the Category matching the product's category ID and replaces the ID with the full Category object.
 
---------------------------------------------------------------------------------------------------------------------------------------------------
+2. Cart Dynamic Calculations (controllers/cartController.js)
+When adding items to the cart, we never blindly trust input prices. The server fetches the latest price from the Product model database, multiplies it by the quantity, and recalculates the total cart price safely on the backend to avoid malicious modifications.
 
-📁 Project Architecture Directory TreePlaintext
+3. Checkout Stock Verification & Snapshots (controllers/orderController.js)
+During checkout, the server verifies stock for every item before making changes. If any item is out of stock, it stops the transaction immediately and throws a clean error using our AppError class. If successful, it decrements the product stock, clears the cart items, and saves a snapshot of the price paid at that exact moment.
 
-├── config/
-│   └── db.js            # Centralized MongoDB connection handler via Mongoose
-├── controllers/
-│   ├── cartController.js      # Handles operations for cart add, update, and clear
-│   ├── categoryController.js  # Handles CRUD operations for categories (Task 4.4)
-│   ├── orderController.js     # Handles order placement and order history
-│   └── productController.js   # Handles CRUD operations for products
-├── middlewares/
-│   └── errorHandler.js  # Central Error Handler middleware (Task 4.3)
-├── models/
-│   ├── cart.js          # Mongoose schema for the shopping cart database
-│   ├── category.js      # Mongoose schema for product categories
-│   ├── order.js         # Mongoose schema for customer orders
-│   └── product.js       # Mongoose schema for e-commerce products
-├── routes/
-│   ├── cartRoutes.js     # Router mapping cart endpoints
-│   ├── categoryRoutes.js # Router mapping category endpoints
-│   ├── orderRoutes.js    # Router mapping order endpoints
-│   └── productRoutes.js  # Router mapping product endpoints
-├── scripts/
-│   └── seeds.js         # Database seeder script to populate sample data
-├── utils/
-│   ├── AppError.js      # Custom operational error class helper (Task 4.2)
-│   └── asyncHandler.js  # Async handler utility wrapper (Task 4.2)
-├── .env                 # Local security environment variables (Git ignored)
-├── .gitignore           # Specifies intentionally untracked files to ignore
-├── app.js               # Express app and Middleware Pipeline configuration (Task 4.1)
-├── package-lock.json    # Auto-generated manifest of exact dependency versions
-├── package.json         # Project metadata and dependency configuration
-└── README.md            # Comprehensive project documentation
-## Task 8: Git Workflow Complete
+## 📮 How to Test using the included Postman Collection
+Import the Collection: In Postman, click Import and select the file My ```Collection.postman_collection.json``` located right inside this project folder.
+
+**Run requests in order to see the full life cycle:**
+
+Run ```GET get all categories ```first to see seeded data.
+
+Run ```POST create category``` to add a new section.
+
+Run ```POST create product``` using the category ID.
+
+Run ```POST add to cart ```to add products, then check the total via ``GET get cart``.
+
+Finally, ``run POST create order`` with a shipping address to see the stock reduce, the order generated, and your cart automatically cleared to 0 items!
+
