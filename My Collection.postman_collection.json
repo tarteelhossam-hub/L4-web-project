@@ -1,7 +1,7 @@
 {
   "info": {
     "_postman_id": "08b0eb9b-4996-4dbd-8872-b76efdb8726a",
-    "name": "My Collection",
+    "name": "E- commerce API",
     "description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "56514096",
@@ -35,7 +35,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"Books\"\r\n}",
+              "raw": "{\r\n    \"name\": \"Home Appliances\",\r\n    \"description\": \"Everything you need for your kitchen and home.\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -53,6 +53,104 @@
                 "api",
                 "v1",
                 "categories"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get one category",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "delete category",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/categories/6a51401d7c32f97af66b1a8b",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "categories",
+                "6a51401d7c32f97af66b1a8b"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"description\": \"object we read\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/categories/6a4fa09b88c501bb219d2c7e",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "categories",
+                "6a4fa09b88c501bb219d2c7e"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete repated",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/categories/6a5140137c32f97af66b1a8a",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "categories",
+                "6a5140137c32f97af66b1a8a"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "New Request",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n                \"_id\": \"6a51602f815e67bbb1969229\",\r\n                \"name\": \"furniture\",\r\n                \"createdAt\": \"2026-07-10T21:12:15.135Z\",\r\n                \"updatedAt\": \"2026-07-10T21:12:15.135Z\",\r\n                \"__v\": 0,\r\n                \"decription\":\"objects that design homes\"\r\n            }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/categories/6a51602f815e67bbb1969229",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "categories",
+                "6a51602f815e67bbb1969229"
               ]
             }
           },
@@ -109,6 +207,50 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "get one product",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/products/6a4fa09b88c501bb219d2c7f",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "products",
+                "6a4fa09b88c501bb219d2c7f"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete product",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/products/6a4fa09b88c501bb219d2c7f",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "products",
+                "6a4fa09b88c501bb219d2c7f"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PATCH",
+            "header": []
+          },
+          "response": []
         }
       ]
     },
@@ -157,6 +299,51 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"productId\": \"6a4fa09b88c501bb219d2c80\", \"quantity\": 6}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/cart/items/6a4fa09b88c501bb219d2c80",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "cart",
+                "items",
+                "6a4fa09b88c501bb219d2c80"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/cart",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "cart"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     },
@@ -184,6 +371,70 @@
               ],
               "path": [
                 "orders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get order",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"shippingAddress\": \"Cairo, Egypt\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/orders",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get one order",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"status\": \"Shipped\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/orders/6a50fc1b5b5beecebc323281",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "orders",
+                "6a50fc1b5b5beecebc323281"
               ]
             }
           },

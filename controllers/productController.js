@@ -32,7 +32,7 @@ exports.getAllProducts = asyncHandler(async (req, res, next) => {
 });
 
 exports.getProduct = asyncHandler(async (req, res, next) => {
-    const product = await Product.findById(req.params.id).populate('category', 'name');
+    const product = await Product.findById(req.params.id).populate('category', 'name description');
     if (!product) {
         return next(new AppError('No product found with that ID.', 404));
     }
@@ -50,7 +50,7 @@ exports.updateProduct = asyncHandler(async (req, res, next) => {
         }
     }
     const updatedProduct = await Product.findByIdAndUpdate(req.params.id, req.body, {
-        web: true,
+        new: true,
         runValidators: true
     });
     if (!updatedProduct) {

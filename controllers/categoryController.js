@@ -27,14 +27,11 @@ exports.getCategory = asyncHandler(async (req, res, next) => {
 
 
 exports.createCategory = asyncHandler(async (req, res, next) => {
-  const newCategory = await Category.create({
-    name: req.body.name,
-    description: req.body.description
-  });
-  res.status(201).json({
-    status: 'success',
-    data: { category: newCategory }
-  });
+    const newCategory = await Category.create(req.body); // ده هياخد الـ name والـ description
+    res.status(201).json({
+        status: 'success',
+        data: { category: newCategory }
+    });
 });
 
 
