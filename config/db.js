@@ -10,7 +10,6 @@ const connectDB = async () => {
     }
 };
 
-// دالة قفل الاتصال اللي ناقصة
 const disconnectDB = async () => {
     try {
         await mongoose.connection.close();
@@ -20,5 +19,5 @@ const disconnectDB = async () => {
     }
 };
 
-// تصدير الدالتين مع بعض كـ Object
+
 module.exports = { connectDB, disconnectDB };

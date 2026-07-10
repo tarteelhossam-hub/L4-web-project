@@ -32,7 +32,7 @@ const seedData = async () => {
       { name: 'Node.js Guide', price: 200, description: 'Learn backend development', category: booksId, stock: 50 }
     ]);
 
-    console.log('Database seeded successfully! 🎉');
+    console.log('Database seeded successfully!');
     
     await disconnectDB();
     process.exit(0);
