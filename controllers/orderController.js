@@ -5,7 +5,6 @@ const asyncHandler = require('../utils/asyncHandler');
 const AppError = require('../utils/AppError');
 
 exports.createOrder = asyncHandler(async (req, res, next) => {
-    // ... الكود بتاعك هنا زي ما هو (مظبوط) ...
     const { shippingAddress } = req.body;
     const cart = await Cart.findOne().populate('items.product');
     if (!cart || cart.items.length === 0) {
@@ -46,7 +45,7 @@ exports.updateOrderStatus = asyncHandler(async (req, res, next) => {
         return next(new AppError('No order found with that ID.', 404));
     }
     res.status(200).json({ status: 'success', data: { order } });
-}); // قفلنا الدالة دي هنا
+}); 
 
 exports.getOrderById = asyncHandler(async (req, res, next) => {
     const order = await Order.findById(req.params.id).populate('items.product');
@@ -54,4 +53,4 @@ exports.getOrderById = asyncHandler(async (req, res, next) => {
         return next(new AppError('No order found with that ID', 404));
     }
     res.status(200).json({ status: 'success', data: { order } });
-}); // قفلنا الدالة دي هنا
+}); 
