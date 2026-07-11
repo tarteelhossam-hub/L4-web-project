@@ -9,6 +9,6 @@ router.route('/')
 router.route('/:id')
     .put(orderController.updateOrderStatus)
     .get(orderController.getOrderById)
-    .patch(orderController.updateOrderStatus); // Added this line to handle PATCH requests for updating order status
+    .patch(orderController.updateOrderStatus); 
 
 module.exports = router;

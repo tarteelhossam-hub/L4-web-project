@@ -12,6 +12,6 @@ router.route('/:id')
     .get(categoryController.getCategory)
     .put(categoryController.updateCategory)
     .delete(categoryController.deleteCategory)
-    .patch(categoryController.updateCategory); // Added this line to handle PATCH requests for updating category
+    .patch(categoryController.updateCategory);
 
 module.exports = router;
