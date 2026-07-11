@@ -1,5 +1,4 @@
 const mongoose = require ("mongoose");
-
 const categorySchema = new mongoose.Schema({
     name: {
         type: String,
@@ -13,7 +12,8 @@ const categorySchema = new mongoose.Schema({
     },
         slug: {
             type: String,
-            unique: true
+            unique: true,
+            sparse: true
         }
 }, {
     timestamps: true 

@@ -32,38 +32,38 @@ Controller : Takes the customer's request ("I want to buy a laptop"), talks to t
 ## 📂 Project Folder Structure
 
 ```text
-📁 PROJECT (Root Directory)
-│
-├── 📁 config/ ──────────  Database Connection
-│   └── 📄 db.js ─────────── MongoDB configuration & backup
-│
-├── 📁 models/ ──────────  Data Schemas 
-│   ├── 📄 category.js ───── Category structure
-│   ├── 📄 product.js ────── Product structure & references
-│   ├── 📄 cart.js ───────── Shopping cart items
-│   └── 📄 order.js ──────── Checkout & shipping details
-│
-├── 📁 controllers/ ─────  Business Logic
-│   ├── 📄 categoryController.js ─ Fetching & creating categories
-│   ├── 📄 productController.js ── Product operations & populate()
-│   ├── 📄 cartController.js ───── Stock checks & dynamic pricing
-│   └── 📄 orderController.js ──── Checking stock & clearing cart
-│
-├── 📁 routes/ ──────────  URL Endpoints & Routing
-│   ├── 📄 categoryRoutes.js ── Maps /api/categories
-│   ├── 📄 productRoutes.js ─── Maps /api/products
-│   ├── 📄 cartRoutes.js ────── Maps /api/cart
-│   └── 📄 orderRoutes.js ───── Maps /api/orders
-│
-├── 📁 middleware/ ──────  Request Filters
-│   └── 📄 errorHandler.js ──── Centralized global error handler
-│
-├── 📁 utils/ ───────────  Shared Helpers
-│   ├── 📄 AppError.js ──────── Custom HTTP operational errors
-│   └── 📄 asyncHandler.js ──── Eliminates repetitive try/catch
-│
-└── 📁 scripts/ ─────────  Database Utilities
-    └── 📄 seeds.js ────────── Populates fresh mock database data
+PROJECT/
+├── config/              # Project configuration settings.
+│   └── config.js
+├── controllers/         # Logic for processing requests and returning responses.
+│   ├── cartController.js
+│   ├── categoryController.js
+│   ├── orderController.js
+│   └── productController.js
+├── db/                  # Database connection and configuration.
+│   └── connect.js
+├── middleware/          # Functions that process requests before reaching route handlers.
+│   └── errorHandler.js
+├── models/              # Data structures and schemas for the database.
+│   ├── cart.js
+│   ├── category.js
+│   ├── order.js
+│   └── product.js
+├── node_modules/        # Installed dependencies and libraries.
+├── routes/              # API endpoints mapping to controllers.
+│   ├── cartRoutes.js
+│   ├── categoryRoutes.js
+│   ├── orderRoutes.js
+│   └── productRoutes.js
+├── scripts/             # Utility scripts for seeding or maintenance.
+│   └── seeds.js
+├── utils/               # Helper functions and shared utilities.
+│   ├── AppError.js
+│   └── asyncHandler.js
+├── .env                 # Environment variables.
+├── .env.example         # Example of environment variables.
+├── .gitignore           # Files and folders to ignore in Git.
+└── app.js               # The main entry point of the application.
 ```
 ## ⚙️ Prerequisites & Setup Guide
 1. Requirements

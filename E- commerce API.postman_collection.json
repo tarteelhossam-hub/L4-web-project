@@ -35,7 +35,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"Home Appliances\",\r\n    \"description\": \"Everything you need for your kitchen and home.\"\r\n}",
+              "raw": "{\r\n    \"name\": \"makeup\",\r\n    \"description\": \"any .\",\r\n    \"slug\":\"flower\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -91,7 +91,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"description\": \"object we read\"\r\n}",
+              "raw": "{\r\n   \"description\" : \"object needed in homes\",\r\n   \"slug\":\"appliances\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -99,13 +99,13 @@
               }
             },
             "url": {
-              "raw": "{{BASE_URL}}/categories/6a4fa09b88c501bb219d2c7e",
+              "raw": "{{BASE_URL}}/categories/6a527fee411fe7a1b52592a7",
               "host": [
                 "{{BASE_URL}}"
               ],
               "path": [
                 "categories",
-                "6a4fa09b88c501bb219d2c7e"
+                "6a527fee411fe7a1b52592a7"
               ]
             }
           },
@@ -130,13 +130,13 @@
           "response": []
         },
         {
-          "name": "New Request",
+          "name": "add update category",
           "request": {
             "method": "PUT",
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n                \"_id\": \"6a51602f815e67bbb1969229\",\r\n                \"name\": \"furniture\",\r\n                \"createdAt\": \"2026-07-10T21:12:15.135Z\",\r\n                \"updatedAt\": \"2026-07-10T21:12:15.135Z\",\r\n                \"__v\": 0,\r\n                \"decription\":\"objects that design homes\"\r\n            }",
+              "raw": "{\r\n                \"name\": \"makeup\",\r\n                \"description\":\"things put for beauty\",\r\n                \"slug\":\"makeup\"\r\n            }",
               "options": {
                 "raw": {
                   "language": "json"
@@ -144,13 +144,13 @@
               }
             },
             "url": {
-              "raw": "{{BASE_URL}}/categories/6a51602f815e67bbb1969229",
+              "raw": "{{BASE_URL}}/categories/6a528e19c42acda37ed5431e",
               "host": [
                 "{{BASE_URL}}"
               ],
               "path": [
                 "categories",
-                "6a51602f815e67bbb1969229"
+                "6a528e19c42acda37ed5431e"
               ]
             }
           },
@@ -168,7 +168,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"name\": \"Smart Watch\",\r\n  \"price\": 1500,\r\n  \"description\": \"A high-end smart watch with heart rate monitor\",\r\n  \"category\": \"6a4fa09b88c501bb219d2c7d\"\r\n}",
+              "raw": "{\r\n  \"name\": \"mixer\",\r\n  \"price\": 1000,\r\n  \"description\": \"mix food \",\r\n  \"category\": \"6a527fee411fe7a1b52592a7\",\r\n  \"stock\":\"300\",\r\n  \"images\":\"https://tse1.mm.bing.net/th/id/OIP.1CeP30_qk-vqpXfqel8c9AHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -248,7 +248,26 @@
           "name": "update",
           "request": {
             "method": "PATCH",
-            "header": []
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"images\":\"https://tse1.mm.bing.net/th/id/OIP.RGS9O_FCfr8rNnED7kFuFQHaKe?r=0&rs=1&pid=ImgDetMain&o=7&rm=3\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/products/6a52654e5444b8faa172cedf",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "products",
+                "6a52654e5444b8faa172cedf"
+              ]
+            }
           },
           "response": []
         }
@@ -264,7 +283,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"productId\": \"6a4fa09b88c501bb219d2c7f\",\r\n  \"quantity\": 2\r\n}",
+              "raw": "{\r\n  \"productId\": \"6a52654e5444b8faa172cede\",\r\n  \"quantity\": 1\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -409,7 +428,17 @@
           "name": "get one order",
           "request": {
             "method": "GET",
-            "header": []
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/orders/6a52654e5444b8faa172cede",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "orders",
+                "6a52654e5444b8faa172cede"
+              ]
+            }
           },
           "response": []
         },
