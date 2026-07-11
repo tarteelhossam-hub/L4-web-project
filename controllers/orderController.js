@@ -7,26 +7,45 @@ const AppError = require('../utils/AppError');
 exports.createOrder = asyncHandler(async (req, res, next) => {
     const { shippingAddress } = req.body;
     const cart = await Cart.findOne().populate('items.product');
+
     if (!cart || cart.items.length === 0) {
         return next(new AppError('Your cart is empty. Cannot place an order.', 400));
     }
+
     const orderItems = [];
+
     for (const item of cart.items) {
         const product = item.product;
-        if (product.stock !== undefined && product.stock < item.quantity) {
+
+        if (product.stock < item.quantity) {
             return next(new AppError(`Not enough stock for ${product.name}. Available: ${product.stock}`, 400));
         }
-        if (product.stock !== undefined) {
-            product.stock -= item.quantity;
-            await product.save();
-        }
-        orderItems.push({ product: item.product._id, quantity: item.quantity, price: item.price });
+
+        product.stock -= item.quantity;
+        await product.save();
+
+        orderItems.push({
+            product: product._id,
+            name: product.name,
+            quantity: item.quantity,
+            price: item.price
+        });
     }
-    const order = await Order.create({ items: orderItems, totalPrice: cart.totalPrice, shippingAddress });
+
+    const order = await Order.create({
+        items: orderItems,
+        totalPrice: cart.totalPrice,
+        shippingAddress
+    });
+
     cart.items = [];
     cart.totalPrice = 0;
     await cart.save();
-    res.status(201).json({ status: 'success', data: { order } });
+
+    res.status(201).json({
+        status: 'success',
+        data: { order }
+    });
 });
 
 exports.getAllOrders = asyncHandler(async (req, res, next) => {
@@ -53,4 +72,4 @@ exports.getOrderById = asyncHandler(async (req, res, next) => {
         return next(new AppError('No order found with that ID', 404));
     }
     res.status(200).json({ status: 'success', data: { order } });
-}); 
+});

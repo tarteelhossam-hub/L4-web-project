@@ -24,8 +24,16 @@ const productSchema = new mongoose.Schema({
         type: Number,
         default: 0,
         min: [0, 'Stock cannot be negative']
-    }
-}, {
+    },
+     instock: {
+        type: Boolean,
+        default: true
+    },
+       images: [{
+    type: String,
+    trim: true
+}]
+    },{
     timestamps: true
 });
 

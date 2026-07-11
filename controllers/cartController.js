@@ -5,10 +5,15 @@ const AppError = require('../utils/AppError');
 
 exports.addToCart = asyncHandler(async (req, res, next) => {
     const { productId, quantity } = req.body;
+    const requestedQuantity = Number(quantity) || 1;
 
     const product = await Product.findById(productId);
     if (!product) {
         return next(new AppError('No product found with that ID.', 404));
+    }
+
+    if (requestedQuantity > product.stock) {
+        return next(new AppError(`Requested quantity exceeds available stock. Available: ${product.stock}`, 400));
     }
 
     let cart = await Cart.findOne();
@@ -19,9 +24,13 @@ exports.addToCart = asyncHandler(async (req, res, next) => {
     const itemIndex = cart.items.findIndex(item => item.product.toString() === productId);
 
     if (itemIndex > -1) {
-        cart.items[itemIndex].quantity += quantity || 1;
+        const totalNewQty = cart.items[itemIndex].quantity + requestedQuantity;
+        if (totalNewQty > product.stock) {
+            return next(new AppError(`Total quantity in cart exceeds available stock. Available: ${product.stock}`, 400));
+        }
+        cart.items[itemIndex].quantity = totalNewQty;
     } else {
-        cart.items.push({ product: productId, quantity: quantity || 1, price: product.price });
+        cart.items.push({ product: productId, quantity: requestedQuantity, price: product.price });
     }
 
     cart.totalPrice = cart.items.reduce((total, item) => {
@@ -51,19 +60,24 @@ exports.getCart = asyncHandler(async (req, res, next) => {
 
 exports.updateCartItem = asyncHandler(async (req, res, next) => {
     const { productId, quantity } = req.body;
+    const newQuantity = Number(quantity);
+
+    const product = await Product.findById(productId);
+    if (!product) return next(new AppError('Product not found.', 404));
 
     const cart = await Cart.findOne();
-    if (!cart) {
-        return next(new AppError('Your cart is empty.', 404));
-    }
+    if (!cart) return next(new AppError('Your cart is empty.', 404));
 
     const itemIndex = cart.items.findIndex(item => item.product.toString() === productId);
 
     if (itemIndex > -1) {
-        if (quantity <= 0) {
+        if (newQuantity <= 0) {
             cart.items.splice(itemIndex, 1);
         } else {
-            cart.items[itemIndex].quantity = quantity;
+            if (newQuantity > product.stock) {
+                return next(new AppError(`Requested quantity exceeds available stock. Available: ${product.stock}`, 400));
+            }
+            cart.items[itemIndex].quantity = newQuantity;
         }
 
         cart.totalPrice = cart.items.reduce((total, item) => {
