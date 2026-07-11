@@ -157,10 +157,11 @@ POST create order 🟡 (Status: 201 Created)
 **What it does:**The final checkout step! It checks if there is sufficient stock for all items currently in the cart, subtracts the purchased quantity from the product stock in the database, completely clears (empties) the cart, and creates a permanent order history snapshot.
 
 - Body (JSON):
+**you have to use on of these words ['Pending', 'Processing', 'Shipped', 'Delivered', 'Cancelled'] all of them begain with uppercase letters**
 
 ```bash
 {
-  "shippingAddress": "Hadayek Helwan, Cairo, Egypt"
+  "shippingAddress": "Cairo, Egypt"
 }
 ```
 ---
