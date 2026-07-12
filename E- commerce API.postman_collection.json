@@ -62,7 +62,17 @@
           "name": "get one category",
           "request": {
             "method": "GET",
-            "header": []
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/categories/{{categoryid}}",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "categories",
+                "{{categoryid}}"
+              ]
+            }
           },
           "response": []
         },
@@ -72,13 +82,13 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "{{BASE_URL}}/categories/6a51401d7c32f97af66b1a8b",
+              "raw": "{{BASE_URL}}/categories/6a53cb8e68b0877b8461ba6f",
               "host": [
                 "{{BASE_URL}}"
               ],
               "path": [
                 "categories",
-                "6a51401d7c32f97af66b1a8b"
+                "6a53cb8e68b0877b8461ba6f"
               ]
             }
           },
@@ -91,7 +101,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n   \"description\" : \"object needed in homes\",\r\n   \"slug\":\"appliances\"\r\n}",
+              "raw": "{\r\n \"description\" : \"educational books\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -99,13 +109,13 @@
               }
             },
             "url": {
-              "raw": "{{BASE_URL}}/categories/6a527fee411fe7a1b52592a7",
+              "raw": "{{BASE_URL}}/categories/6a53cb8e68b0877b8461ba6d",
               "host": [
                 "{{BASE_URL}}"
               ],
               "path": [
                 "categories",
-                "6a527fee411fe7a1b52592a7"
+                "6a53cb8e68b0877b8461ba6d"
               ]
             }
           },
@@ -117,13 +127,13 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "{{BASE_URL}}/categories/6a5140137c32f97af66b1a8a",
+              "raw": "{{BASE_URL}}/categories/6a53cbfbd041f0eadfaa8d13",
               "host": [
                 "{{BASE_URL}}"
               ],
               "path": [
                 "categories",
-                "6a5140137c32f97af66b1a8a"
+                "6a53cbfbd041f0eadfaa8d13"
               ]
             }
           },
@@ -136,7 +146,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n                \"name\": \"makeup\",\r\n                \"description\":\"things put for beauty\",\r\n                \"slug\":\"makeup\"\r\n            }",
+              "raw": "{\r\n                \"name\": \"clothing\",\r\n                \"description\":\"summer collection\",\r\n                \"slug\":\"fashtion\"\r\n            }",
               "options": {
                 "raw": {
                   "language": "json"
@@ -144,13 +154,13 @@
               }
             },
             "url": {
-              "raw": "{{BASE_URL}}/categories/6a528e19c42acda37ed5431e",
+              "raw": "{{BASE_URL}}/categories/6a53cb8e68b0877b8461ba6e",
               "host": [
                 "{{BASE_URL}}"
               ],
               "path": [
                 "categories",
-                "6a528e19c42acda37ed5431e"
+                "6a53cb8e68b0877b8461ba6e"
               ]
             }
           },
@@ -168,7 +178,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"name\": \"mixer\",\r\n  \"price\": 1000,\r\n  \"description\": \"mix food \",\r\n  \"category\": \"6a527fee411fe7a1b52592a7\",\r\n  \"stock\":\"300\",\r\n  \"images\":\"https://tse1.mm.bing.net/th/id/OIP.1CeP30_qk-vqpXfqel8c9AHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3\"\r\n}",
+              "raw": "{\r\n  \"name\": \"food\",\r\n  \"price\": 1000,\r\n  \"description\": \"old food \",\r\n  \"category\": \"6a527fee411fe7a1b52592a7\",\r\n  \"stock\":\"1\",\r\n  \"images\":\"https://tse1.mm.bing.net/th/id/OIP.1CeP30_qk-vqpXfqel8c9AHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -214,13 +224,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{BASE_URL}}/products/6a4fa09b88c501bb219d2c7f",
+              "raw": "{{BASE_URL}}/products/{{productid}}",
               "host": [
                 "{{BASE_URL}}"
               ],
               "path": [
                 "products",
-                "6a4fa09b88c501bb219d2c7f"
+                "{{productid}}"
               ]
             }
           },
@@ -232,13 +242,13 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "{{BASE_URL}}/products/6a4fa09b88c501bb219d2c7f",
+              "raw": "{{BASE_URL}}/products/6a53cb8e68b0877b8461ba76",
               "host": [
                 "{{BASE_URL}}"
               ],
               "path": [
                 "products",
-                "6a4fa09b88c501bb219d2c7f"
+                "6a53cb8e68b0877b8461ba76"
               ]
             }
           },
@@ -251,7 +261,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"images\":\"https://tse1.mm.bing.net/th/id/OIP.RGS9O_FCfr8rNnED7kFuFQHaKe?r=0&rs=1&pid=ImgDetMain&o=7&rm=3\"\r\n}",
+              "raw": "{\r\n  \"describtion\": \"white summer t-shirt\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -259,13 +269,13 @@
               }
             },
             "url": {
-              "raw": "{{BASE_URL}}/products/6a52654e5444b8faa172cedf",
+              "raw": "{{BASE_URL}}/products/6a53cb8e68b0877b8461ba75",
               "host": [
                 "{{BASE_URL}}"
               ],
               "path": [
                 "products",
-                "6a52654e5444b8faa172cedf"
+                "6a53cb8e68b0877b8461ba75"
               ]
             }
           },
@@ -283,7 +293,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"productId\": \"6a52654e5444b8faa172cede\",\r\n  \"quantity\": 1\r\n}",
+              "raw": "{\r\n  \"productId\": \"6a53cb8e68b0877b8461ba74\",\r\n  \"quantity\": 2\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -326,7 +336,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\"productId\": \"6a4fa09b88c501bb219d2c80\", \"quantity\": 6}",
+              "raw": "{\"productId\": \"6a53cb8e68b0877b8461ba74\", \"quantity\": 3}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -334,14 +344,14 @@
               }
             },
             "url": {
-              "raw": "{{BASE_URL}}/cart/items/6a4fa09b88c501bb219d2c80",
+              "raw": "{{BASE_URL}}/cart/items/6a4fa09b88c501bb219d2c7f",
               "host": [
                 "{{BASE_URL}}"
               ],
               "path": [
                 "cart",
                 "items",
-                "6a4fa09b88c501bb219d2c80"
+                "6a4fa09b88c501bb219d2c7f"
               ]
             }
           },
@@ -352,6 +362,15 @@
           "request": {
             "method": "DELETE",
             "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n   \"productId\":\"6a53cb8e68b0877b8461ba74\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
             "url": {
               "raw": "{{BASE_URL}}/cart",
               "host": [
@@ -426,17 +445,29 @@
         },
         {
           "name": "get one order",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
             "method": "GET",
             "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
             "url": {
-              "raw": "{{BASE_URL}}/orders/6a52654e5444b8faa172cede",
+              "raw": "{{BASE_URL}}/orders/{{orderid}}",
               "host": [
                 "{{BASE_URL}}"
               ],
               "path": [
                 "orders",
-                "6a52654e5444b8faa172cede"
+                "{{orderid}}"
               ]
             }
           },
@@ -457,13 +488,13 @@
               }
             },
             "url": {
-              "raw": "{{BASE_URL}}/orders/6a50fc1b5b5beecebc323281",
+              "raw": "{{BASE_URL}}/orders/{{orderid}}",
               "host": [
                 "{{BASE_URL}}"
               ],
               "path": [
                 "orders",
-                "6a50fc1b5b5beecebc323281"
+                "{{orderid}}"
               ]
             }
           },
